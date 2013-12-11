@@ -23,6 +23,11 @@ public class PlayerManager
 		scoreboard.registerHit(player);
 	}
 
+	public void updatePlayerSign(IPlayer player)
+	{
+		scoreboard.updatePersonalSign(player);
+	}
+
 	private Config config;
 	private Scoreboard scoreboard;
 }

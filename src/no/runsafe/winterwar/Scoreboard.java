@@ -44,7 +44,7 @@ public class Scoreboard
 		}
 	}
 
-	private void updatePersonalSign(IPlayer player)
+	public void updatePersonalSign(IPlayer player)
 	{
 		ILocation signLocation = config.getPersonalScoreboardLocation();
 		if (signLocation == null)

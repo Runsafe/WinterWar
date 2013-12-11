@@ -1,14 +1,17 @@
 package no.runsafe.winterwar;
 
+import no.runsafe.framework.api.IWorld;
 import no.runsafe.framework.api.entity.IEntity;
 import no.runsafe.framework.api.event.entity.IEntityDamageByEntityEvent;
+import no.runsafe.framework.api.event.player.IPlayerChangedWorldEvent;
 import no.runsafe.framework.api.player.IPlayer;
 import no.runsafe.framework.minecraft.Buff;
 import no.runsafe.framework.minecraft.entity.ProjectileEntity;
 import no.runsafe.framework.minecraft.entity.RunsafeProjectile;
 import no.runsafe.framework.minecraft.event.entity.RunsafeEntityDamageByEntityEvent;
+import no.runsafe.framework.minecraft.event.player.RunsafePlayerChangedWorldEvent;
 
-public class Watcher implements IEntityDamageByEntityEvent
+public class Watcher implements IEntityDamageByEntityEvent, IPlayerChangedWorldEvent
 {
 	public Watcher(PlayerManager playerManager)
 	{
@@ -38,6 +41,16 @@ public class Watcher implements IEntityDamageByEntityEvent
 				event.cancel();
 			}
 		}
+	}
+
+	@Override
+	public void OnPlayerChangedWorld(RunsafePlayerChangedWorldEvent event)
+	{
+		IPlayer player = event.getPlayer();
+		IWorld world = player.getWorld();
+
+		if (world != null)
+			playerManager.updatePlayerSign(player);
 	}
 
 	private IPlayer getShooterPlayer(IEntity entity)
