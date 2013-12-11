@@ -1,10 +1,10 @@
 scoreboard:
-  x: 0
-  y: 0
-  z: 0
+  x: 9985
+  y: 63
+  z: 10017
   world: spawn
 personalScoreboard:
-  x: 1
-  y: 0
-  z: 1
+  x: 9985
+  y: 63
+  z: 10016
   world: spawn
