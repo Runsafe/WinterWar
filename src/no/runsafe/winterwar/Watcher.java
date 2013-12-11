@@ -49,7 +49,7 @@ public class Watcher implements IEntityDamageByEntityEvent, IPlayerChangedWorldE
 		IPlayer player = event.getPlayer();
 		IWorld world = player.getWorld();
 
-		if (world != null)
+		if (world != null && playerManager.isInWinterWorld(player))
 			playerManager.updatePlayerSign(player);
 	}
 
