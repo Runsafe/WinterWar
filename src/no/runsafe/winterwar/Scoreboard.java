@@ -36,9 +36,11 @@ public class Scoreboard
 		{
 			Map.Entry<String, Integer> player = getHighestPlayer();
 			if (player != null)
-				sign.setLines("Current Highest", "", player.getKey(), "Hits: " + player.getValue());
+				sign.setLines("Today's Highest", "", player.getKey(), "Hits: " + player.getValue());
 			else
-				sign.setLines("Current Highest", "", "Nobody :(", "");
+				sign.setLines("Today's Highest", "", "Nobody :(", "");
+
+			sign.update(true);
 		}
 	}
 
@@ -47,6 +49,7 @@ public class Scoreboard
 		ILocation signLocation = config.getPersonalScoreboardLocation();
 		if (signLocation == null)
 			return;
+
 
 		new PacketUpdateSign(signLocation, "Your Score", "", "" + getPlayerScore(player), "").send(player);
 	}
