@@ -1,9 +1,9 @@
 package no.runsafe.winterwar;
 
-import no.runsafe.framework.RunsafePlugin;
+import no.runsafe.framework.RunsafeConfigurablePlugin;
 import no.runsafe.framework.api.log.IDebug;
 
-public class WinterWar extends RunsafePlugin
+public class WinterWar extends RunsafeConfigurablePlugin
 {
 	public static IDebug Debugger = null;
 
@@ -11,6 +11,9 @@ public class WinterWar extends RunsafePlugin
 	protected void PluginSetup()
 	{
 		Debugger = getComponent(IDebug.class);
-		//addComponent(SomeComponent.class);
+		addComponent(Config.class);
+		addComponent(Scoreboard.class);
+		addComponent(PlayerManager.class);
+		addComponent(Watcher.class);
 	}
 }
