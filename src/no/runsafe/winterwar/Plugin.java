@@ -1,7 +1,7 @@
 package no.runsafe.winterwar;
 
 import no.runsafe.framework.RunsafePlugin;
-import no.runsafe.framework.api.IDebug;
+import no.runsafe.framework.api.log.IDebug;
 
 public class Plugin extends RunsafePlugin
 {
