@@ -3,7 +3,7 @@ package no.runsafe.winterwar;
 import no.runsafe.framework.RunsafePlugin;
 import no.runsafe.framework.api.log.IDebug;
 
-public class Plugin extends RunsafePlugin
+public class WinterWar extends RunsafePlugin
 {
 	public static IDebug Debugger = null;
 
