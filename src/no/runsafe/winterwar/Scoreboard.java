@@ -1,6 +1,7 @@
 package no.runsafe.winterwar;
 
 import no.runsafe.framework.api.ILocation;
+import no.runsafe.framework.api.block.IBlock;
 import no.runsafe.framework.api.block.ISign;
 import no.runsafe.framework.api.player.IPlayer;
 import no.runsafe.framework.minecraft.packets.PacketUpdateSign;
@@ -31,9 +32,12 @@ public class Scoreboard
 		if (signLocation == null)
 			return;
 
-		ISign sign = signLocation.getBlock().getAsSign();
-		if (sign != null)
+		IBlock signBlock = signLocation.getBlock();
+
+		if (signBlock != null && signBlock instanceof ISign)
 		{
+			ISign sign = (ISign) signBlock;
+
 			Map.Entry<String, Integer> player = getHighestPlayer();
 			if (player != null)
 				sign.setLines("Today's Highest", "", player.getKey(), "Hits: " + player.getValue());
