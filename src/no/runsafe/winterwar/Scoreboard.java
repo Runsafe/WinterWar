@@ -34,7 +34,7 @@ public class Scoreboard
 
 		IBlock signBlock = signLocation.getBlock();
 
-		if (signBlock != null && signBlock instanceof ISign)
+		if (signBlock instanceof ISign)
 		{
 			ISign sign = (ISign) signBlock;
 
@@ -78,6 +78,6 @@ public class Scoreboard
 		return currentPlayer;
 	}
 
-	private Config config;
-	private HashMap<String, Integer> scores = new HashMap<String, Integer>();
+	private final Config config;
+	private final HashMap<String, Integer> scores = new HashMap<>();
 }

@@ -28,6 +28,6 @@ public class PlayerManager
 		scoreboard.updatePersonalSign(player);
 	}
 
-	private Config config;
-	private Scoreboard scoreboard;
+	private final Config config;
+	private final Scoreboard scoreboard;
 }

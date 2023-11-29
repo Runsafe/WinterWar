@@ -66,5 +66,5 @@ public class Watcher implements IEntityDamageByEntityEvent, IPlayerChangedWorldE
 		return entity.getEntityType() == ProjectileEntity.Snowball;
 	}
 
-	private PlayerManager playerManager;
+	private final PlayerManager playerManager;
 }
