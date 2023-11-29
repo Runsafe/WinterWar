@@ -2,6 +2,7 @@ package no.runsafe.winterwar;
 
 import no.runsafe.framework.api.IWorld;
 import no.runsafe.framework.api.entity.IEntity;
+import no.runsafe.framework.api.entity.ILivingEntity;
 import no.runsafe.framework.api.event.entity.IEntityDamageByEntityEvent;
 import no.runsafe.framework.api.event.player.IPlayerChangedWorldEvent;
 import no.runsafe.framework.api.player.IPlayer;
@@ -58,7 +59,11 @@ public class Watcher implements IEntityDamageByEntityEvent, IPlayerChangedWorldE
 		if (entity == null || !isSnowball(entity))
 			return null;
 
-		return ((RunsafeProjectile) entity).getShootingPlayer();
+		ILivingEntity shooter = ((RunsafeProjectile) entity).getShootingEntity();
+		if (shooter == null)
+			return null;
+
+		return WinterWar.Server.getPlayer(shooter.getUniqueId());
 	}
 
 	private boolean isSnowball(IEntity entity)
