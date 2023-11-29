@@ -58,7 +58,7 @@ public class Watcher implements IEntityDamageByEntityEvent, IPlayerChangedWorldE
 		if (entity == null || !isSnowball(entity))
 			return null;
 
-		return ((RunsafeProjectile) entity).getShooterPlayer();
+		return ((RunsafeProjectile) entity).getShootingPlayer();
 	}
 
 	private boolean isSnowball(IEntity entity)
