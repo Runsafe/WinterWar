@@ -2,6 +2,7 @@ package no.runsafe.winterwar;
 
 import no.runsafe.framework.api.IWorld;
 import no.runsafe.framework.api.entity.IEntity;
+import no.runsafe.framework.api.entity.ILivingEntity;
 import no.runsafe.framework.api.event.entity.IEntityDamageByEntityEvent;
 import no.runsafe.framework.api.event.player.IPlayerChangedWorldEvent;
 import no.runsafe.framework.api.player.IPlayer;
@@ -24,7 +25,7 @@ public class Watcher implements IEntityDamageByEntityEvent, IPlayerChangedWorldE
 		IEntity damagedEntity = event.getEntity();
 
 		// Check the entity hit was a player and they are in the correct world.
-		if (damagedEntity instanceof IPlayer && playerManager.isInWinterWorld(damagedEntity))
+		if (damagedEntity instanceof IPlayer && playerManager.isInWinterLocation(damagedEntity))
 		{
 			// If shooter is not null, it is a player who threw a snowball.
 			IPlayer shooter = getShooterPlayer(event.getDamageActor());
@@ -49,7 +50,7 @@ public class Watcher implements IEntityDamageByEntityEvent, IPlayerChangedWorldE
 		IPlayer player = event.getPlayer();
 		IWorld world = player.getWorld();
 
-		if (world != null && playerManager.isInWinterWorld(player))
+		if (world != null && playerManager.isInWinterLocation(player))
 			playerManager.updatePlayerSign(player);
 	}
 
@@ -58,7 +59,11 @@ public class Watcher implements IEntityDamageByEntityEvent, IPlayerChangedWorldE
 		if (entity == null || !isSnowball(entity))
 			return null;
 
-		return ((RunsafeProjectile) entity).getShooterPlayer();
+		ILivingEntity shooter = ((RunsafeProjectile) entity).getShootingEntity();
+		if (shooter == null)
+			return null;
+
+		return WinterWar.Server.getPlayer(shooter.getUniqueId());
 	}
 
 	private boolean isSnowball(IEntity entity)
@@ -66,5 +71,5 @@ public class Watcher implements IEntityDamageByEntityEvent, IPlayerChangedWorldE
 		return entity.getEntityType() == ProjectileEntity.Snowball;
 	}
 
-	private PlayerManager playerManager;
+	private final PlayerManager playerManager;
 }

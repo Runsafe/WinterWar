@@ -8,3 +8,8 @@ personalScoreboard:
   y: 63
   z: 10016
   world: spawn
+winterWarRegions:
+  world:
+    - spawn
+  survival3:
+    - spawn

@@ -4,7 +4,6 @@ import no.runsafe.framework.api.ILocation;
 import no.runsafe.framework.api.block.IBlock;
 import no.runsafe.framework.api.block.ISign;
 import no.runsafe.framework.api.player.IPlayer;
-import no.runsafe.framework.minecraft.packets.PacketUpdateSign;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -34,7 +33,7 @@ public class Scoreboard
 
 		IBlock signBlock = signLocation.getBlock();
 
-		if (signBlock != null && signBlock instanceof ISign)
+		if (signBlock instanceof ISign)
 		{
 			ISign sign = (ISign) signBlock;
 
@@ -54,8 +53,7 @@ public class Scoreboard
 		if (signLocation == null)
 			return;
 
-
-		new PacketUpdateSign(signLocation, "Your Score", "", "" + getPlayerScore(player), "").send(player);
+		player.sendSignChange(signLocation, "Your Score", "", "" + getPlayerScore(player), "");
 	}
 
 	private int getPlayerScore(IPlayer player)
@@ -78,6 +76,6 @@ public class Scoreboard
 		return currentPlayer;
 	}
 
-	private Config config;
-	private HashMap<String, Integer> scores = new HashMap<String, Integer>();
+	private final Config config;
+	private final HashMap<String, Integer> scores = new HashMap<>();
 }
