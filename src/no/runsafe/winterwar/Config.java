@@ -2,8 +2,11 @@ package no.runsafe.winterwar;
 
 import no.runsafe.framework.api.IConfiguration;
 import no.runsafe.framework.api.ILocation;
-import no.runsafe.framework.api.IWorld;
 import no.runsafe.framework.api.event.plugin.IConfigurationChanged;
+
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 public class Config implements IConfigurationChanged
 {
@@ -12,6 +15,7 @@ public class Config implements IConfigurationChanged
 	{
 		location = config.getConfigValueAsLocation("scoreboard");
 		personalLocation = config.getConfigValueAsLocation("personalScoreboard");
+		winterWarRegions.putAll(config.getConfigSectionsAsList("winterWarRegions"));
 	}
 
 	public ILocation getScoreboardLocation()
@@ -24,11 +28,12 @@ public class Config implements IConfigurationChanged
 		return personalLocation;
 	}
 
-	public IWorld getWorld()
+	public Map<String, List<String>> getRegions()
 	{
-		return location.getWorld();
+		return winterWarRegions;
 	}
 
 	private ILocation location;
 	private ILocation personalLocation;
+	private static final Map<String, List<String>> winterWarRegions = new HashMap<>();
 }

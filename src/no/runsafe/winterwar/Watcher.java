@@ -25,7 +25,7 @@ public class Watcher implements IEntityDamageByEntityEvent, IPlayerChangedWorldE
 		IEntity damagedEntity = event.getEntity();
 
 		// Check the entity hit was a player and they are in the correct world.
-		if (damagedEntity instanceof IPlayer && playerManager.isInWinterWorld(damagedEntity))
+		if (damagedEntity instanceof IPlayer && playerManager.isInWinterLocation(damagedEntity))
 		{
 			// If shooter is not null, it is a player who threw a snowball.
 			IPlayer shooter = getShooterPlayer(event.getDamageActor());
@@ -50,7 +50,7 @@ public class Watcher implements IEntityDamageByEntityEvent, IPlayerChangedWorldE
 		IPlayer player = event.getPlayer();
 		IWorld world = player.getWorld();
 
-		if (world != null && playerManager.isInWinterWorld(player))
+		if (world != null && playerManager.isInWinterLocation(player))
 			playerManager.updatePlayerSign(player);
 	}
 

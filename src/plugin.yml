@@ -2,7 +2,7 @@ name: WinterWar
 main: no.runsafe.winterwar.WinterWar
 version: 1.0.@BUILD@
 authors: []
-depend: []
+depend: [RunsafeWorldGuardBridge]
 description:
 commands:
   something:
