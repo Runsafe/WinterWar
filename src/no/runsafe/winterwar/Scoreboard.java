@@ -18,7 +18,7 @@ public class Scoreboard
 	public void registerHit(IPlayer player)
 	{
 		String playerName = player.getName();
-		int currentScore = scores.containsKey(playerName) ? scores.get(playerName) : 0;
+		int currentScore = scores.getOrDefault(playerName, 0);
 		scores.put(playerName, currentScore + 1);
 
 		updateSign();
