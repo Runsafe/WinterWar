@@ -3,8 +3,8 @@ main: no.runsafe.winterwar.WinterWar
 version: 1.0.@BUILD@
 authors: []
 depend: [RunsafeWorldGuardBridge]
-description:
+description: 'wars in winters'
 commands:
   something:
-    description:
+    description: 'nothing'
     aliases: []
